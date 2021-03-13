@@ -22,6 +22,9 @@ class ViewController: UIViewController {
         loginButton.setTitle("Entrar", for: .normal)
         loginButton.translatesAutoresizingMaskIntoConstraints = false;
         view.addSubview(loginButton)
+        loginButton.addTarget(self,
+                              action: #selector(handleLoginTouchUpInside),
+                              for: .touchUpInside)
         
         usernameTextField = UITextField(frame: .zero)
         usernameTextField.placeholder = "Login Name"
@@ -53,4 +56,14 @@ class ViewController: UIViewController {
             usernameTextField.trailingAnchor.constraint(equalTo: view.readableContentGuide.trailingAnchor, constant: -20)
         ])
     }
+    
+    @objc func handleLoginTouchUpInside() {
+        print("Login has been tapped")
+        if usernameTextField.isFirstResponder {
+            usernameTextField.resignFirstResponder()
+        }
+        if passwordTextField.isFirstResponder {
+          passwordTextField.resignFirstResponder()
+        }
+      }
 }
